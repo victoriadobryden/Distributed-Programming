@@ -1,0 +1,53 @@
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+
+    <xs:element name="Gems">
+        <xs:complexType>
+            <xs:sequence minOccurs="0" maxOccurs="200">
+                <xs:element name="Gem" type="gemType"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:complexType name="gemType">
+        <xs:sequence>
+            <xs:element name="id" type="xs:ID"/>
+            <xs:element name="name" type="xs:string"/>
+            <xs:element name="value" type="xs:double"/>
+            <xs:element name="original" type="xs:string"/>
+            <xs:element name="Preciousness" type="preciousnessType"/>
+            <xs:element name="VisualParameters" type="visualParametersType"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:simpleType name="preciousnessType" final="restriction" >
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="precious"/>
+            <xs:enumeration value="semi-precious"/>
+        </xs:restriction>
+    </xs:simpleType>
+
+    <xs:complexType name="visualParametersType">
+        <xs:sequence>
+            <xs:element name="color" type="colorType"/>
+            <xs:element name="opacity" type="int0to100"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:simpleType name="colorType" final="restriction" >
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="red"/>
+            <xs:enumeration value="green"/>
+            <xs:enumeration value="blue"/>
+            <xs:enumeration value="yellow"/>
+            <xs:enumeration value="orange"/>
+        </xs:restriction>
+    </xs:simpleType>
+
+    <xs:simpleType name="int0to100">
+        <xs:restriction base="xs:int">
+            <xs:minExclusive value="0"/>
+            <xs:maxExclusive value="100"/>
+        </xs:restriction>
+    </xs:simpleType>
+
+</xs:schema>
